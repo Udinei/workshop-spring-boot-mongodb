@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.udineisilva.workshopmongo.domain.Post;
 import com.udineisilva.workshopmongo.domain.User;
 import com.udineisilva.workshopmongo.dto.UserDTO;
 import com.udineisilva.workshopmongo.services.UserService;
@@ -80,6 +81,14 @@ public class UserResource {
 		// não retorna nada - noContent() retorna o codigo http (204) 
 		return ResponseEntity.noContent().build();
 	}
+	
+
+	@RequestMapping(value="/{id}/posts",method=RequestMethod.GET)
+	public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
+		User obj = service.findById(id);
+		return ResponseEntity.ok().body(obj.getPosts());
+	}
+		
 	
 	/* metodo inicial de teste e resposta do browser 
 	@GetMapping
