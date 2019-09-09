@@ -64,6 +64,13 @@ public class UserResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	@RequestMapping(value="/{id}",method=RequestMethod.DELETE)
+	public ResponseEntity<Void> delete(@PathVariable String id){
+		service.delete(id);
+		// não retorna nada - noContent() retorna o codigo http (204) 
+		return ResponseEntity.noContent().build();
+	}
+	
 	
 	
 	/* metodo inicial de teste e resposta do browser 
